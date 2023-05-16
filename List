@@ -1,0 +1,64 @@
+package BAi1;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class List {
+    public void list() {
+        ArrayList<giaoDichDat> arrgddat= new ArrayList<>();
+        ArrayList<giaoDichNha> arrgdnha= new ArrayList<>();
+        int sogddat=0 ,sogdnha=0;
+        long tongtiengddat=0,tbthanhtien=0;
+        Scanner sc =new Scanner(System.in);
+        System.out.println("Nhap so giao dich dat: ");
+        sogddat =sc.nextInt();
+        System.out.println("Nhap so giao dich nha: ");
+        sogdnha =sc.nextInt();
+        
+        System.out.println("Nhap thong tin giao dich dat : ");
+        for(int i=0 ; i< sogddat ;i++){
+            System.out.println("Nhap thong tin giao dich dat lan thu : "+i+1);
+            giaoDichDat gddat=new giaoDichDat();
+            gddat.nhap();
+            arrgddat.add(gddat);
+        }
+        System.out.println("Nhap thong tin giao dich nha : ");
+        for(int i=0 ; i< sogdnha ;i++){
+            System.out.println("Nhap thong tin giao dich nha lan thu : "+i+1);
+            giaoDichNha gdnha=new giaoDichNha();
+            gdnha.nhap();
+            arrgdnha.add(gdnha);
+        }
+        System.out.println("Thong tin giao dich dat : ");
+        for(int i=0;i<arrgddat.size();i++){
+            System.out.println(arrgddat.get(i).toString());
+        }
+        System.out.println("Thong tin giao dich nha : ");
+        for(int i=0;i<arrgdnha.size();i++){
+            System.out.println(arrgdnha.get(i).toString());
+        }
+        for(int i=0;i<arrgddat.size();i++){
+            if(arrgddat.get(i).getLoaiDat().equalsIgnoreCase("a")){
+                tongtiengddat+=arrgddat.get(i).getDienTich()*arrgddat.get(i).getDonGia()*1.5;
+            }
+            else if(arrgddat.get(i).getLoaiDat().equalsIgnoreCase("b")||arrgddat.get(i).getLoaiDat().equalsIgnoreCase("c")){
+                tongtiengddat+=arrgddat.get(i).getDienTich()*arrgddat.get(i).getDonGia();
+            } 
+        }
+        tbthanhtien =tongtiengddat/arrgddat.size();
+        System.out.println("Trung binh thanh tien giao dich dat : "+tbthanhtien);
+        System.out.println("Cac giao dich dat trong thang 9/2013 : ");
+        for(int i=0;i<arrgddat.size();i++){
+            String[] dategddat=arrgddat.get(i).getNgayGiaoDich().split("/");
+            if(dategddat[1].equals("9")&&dategddat[2].equals("2013")){
+                System.out.println(arrgddat.get(i).toString());
+            }
+        }
+        System.out.println("Cac giao dich dat trong thang 9/2013 : ");
+        for(int i=0;i<arrgdnha.size();i++){
+            String[] dategdnha=arrgdnha.get(i).getNgayGiaoDich().split("/");
+            if(dategdnha[1].equals("9")&&dategdnha[2].equals("2013")){
+                System.out.println(arrgdnha.get(i).toString());
+            }
+        }
+}
+}
